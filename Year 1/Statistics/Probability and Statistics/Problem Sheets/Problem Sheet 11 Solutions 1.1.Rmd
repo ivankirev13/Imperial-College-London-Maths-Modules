@@ -1,0 +1,51 @@
+---
+title: "MATH40005 Problem Sheet 11 Week 21"
+subtitle: 'Ronald A. Fisher, CID: 12345678'
+output:
+  html_document:
+    df_print: paged
+---
+
+<!--
+This is a comment.
+To create the HTML in RStudio, click on the "Knit" icon ("Knit to HTML").
+If you cannot see a "Knit" icon, look for a "Preview" icon next to a gear.
+Click on the drop-down arrow next to "Preview" and select "Knit to HTML".
+-->
+
+# Introduction 
+
+The probability density function of a normal distribution with mean $\mu$ and variance $\sigma^2$
+is 
+
+\begin{equation}
+f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}} \exp \left( - \frac{(x - \mu)^2}{ 2\sigma^2}  \right)
+\end{equation}
+
+
+# A histogram
+
+
+<!--
+Below is a code chunk.
+Setting the out.width option specifies how large to make any plots.
+You can increase/decrease the size of the plot by changing the value 0.7
+-->
+
+```{r}
+# set the mean and standard deviation for a normal distribution, 
+# choose your own parameter values
+mu <- 5
+sigma <- 1
+
+# generate observations following a normal distribution with those parameter values
+set.seed(1)
+z <- rnorm(n=10000, mean=mu, sd=sigma)
+
+# plotting the data, with a histogram and overlaying a density
+hist(z, freq=FALSE)
+k <- 5
+x <- seq(from=mu-k*sigma, to=mu+k*sigma, by=0.01)
+y <- dnorm(x, mean=mu, sd=sigma)
+lines(x=x, y=y, type='l', lwd=2, col="blue")
+```
